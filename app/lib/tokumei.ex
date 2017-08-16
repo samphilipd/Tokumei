@@ -19,6 +19,8 @@ defmodule Tokumei do
       use Tokumei.Static
       use Tokumei.Head
       use Tokumei.CommonLogger
+
+      use Tokumei.CloseConnection
     end
   end
 end
