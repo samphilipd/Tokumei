@@ -20,7 +20,12 @@ defmodule Tokumei.CloseConnection do
         response = super(request, env)
 
         response_headers = case request.headers do
-          %{"connection" => "close"} -> [{"connection", "close"} | response.headers]
+          %{"connection" => "close"} ->
+            if Enum.member?(response.headers , {"connection", "close"}) do
+              response.headers
+            else
+              [{"connection", "close"} | response.headers]
+            end
           _ -> response.headers
         end
 
