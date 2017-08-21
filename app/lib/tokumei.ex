@@ -20,7 +20,7 @@ defmodule Tokumei do
       use Tokumei.Head
       use Tokumei.CommonLogger
 
-      use Tokumei.CloseConnection
+      use Tokumei.Connection
     end
   end
 end
