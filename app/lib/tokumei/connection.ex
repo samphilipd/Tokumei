@@ -32,6 +32,20 @@ defmodule Tokumei.Connection do
           _ ->
             response
         end
+
+        case Raxx.Connection.fetch(request) do
+          {:ok, "close"} ->
+            Process.send_after(self(), :close_timeout, 1_000)
+          _ ->
+            :ok
+        end
+
+        new_response
+      end
+
+      # defoverridable [handle_info: 2]
+      def handle_info(a, b) do
+        IO.inspect(a)
       end
     end
   end
